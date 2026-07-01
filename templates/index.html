@@ -226,21 +226,6 @@ Normal: 16 - 166 μU/mL
 </div>
 
 <div class="col-md-6 mb-4">
-<input
-type="number"
-step="0.1"
-class="form-control"
-name="BMI"
-id="bmi"
-readonly
-required>
-
-<small class="text-info">
-
-BMI will be calculated automatically
-
-</small>
-
 <label>
 <i class="fa-solid fa-ruler-vertical"></i>
 Height (cm)
@@ -251,6 +236,10 @@ type="number"
 class="form-control"
 id="height"
 placeholder="Example: 170">
+
+<small class="text-light">
+Enter your height in centimeters
+</small>
 
 </div>
 
@@ -266,6 +255,32 @@ type="number"
 class="form-control"
 id="weight"
 placeholder="Example: 68">
+
+<small class="text-light">
+Enter your weight in kilograms
+</small>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<label>
+<i class="fa-solid fa-calculator"></i>
+BMI (Auto Calculated)
+</label>
+
+<input
+type="number"
+step="0.1"
+class="form-control"
+name="BMI"
+id="bmi"
+readonly
+required>
+
+<small class="text-info">
+BMI is calculated automatically.
+</small>
 
 </div>
 
