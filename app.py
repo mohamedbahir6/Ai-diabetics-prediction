@@ -84,12 +84,17 @@ def login():
         conn.close()
 
         if user:
-            session["user"] = user[1]   # user name
-            return redirect(url_for("home_page"))
-        else:
-            return "❌ Invalid Email or Password"
 
-    return render_template("login.html")
+         session["user"] = user[1]
+
+        return redirect(url_for("home_page"))
+
+    else:
+
+        return render_template(
+        "login.html",
+        error="Account not found! Please sign up first."
+    )
 @app.route("/logout")
 def logout():
 
