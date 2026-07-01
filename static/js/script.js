@@ -278,3 +278,18 @@ if (femaleVoice) {
 window.speechSynthesis.onvoiceschanged = () => {
     console.log(window.speechSynthesis.getVoices());
 };
+const height = document.getElementById("height");
+const weight = document.getElementById("weight");
+const bmi = document.getElementById("bmi");
+
+function calculateBMI() {
+    const h = parseFloat(height.value) / 100;
+    const w = parseFloat(weight.value);
+
+    if (h > 0 && w > 0) {
+        bmi.value = (w / (h * h)).toFixed(1);
+    }
+}
+
+height.addEventListener("input", calculateBMI);
+weight.addEventListener("input", calculateBMI);
