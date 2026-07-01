@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Diabetes Prediction</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+<!-- Loader -->
+<div id="loader">
+
+    <div class="loader-content">
+
+        <i class="fa-solid fa-heart-pulse loader-icon"></i>
+
+        <h2>AI Diabetes Prediction</h2>
+
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+
+        <p>Loading...</p>
+
+    </div>
+
+</div>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold text-white" href="#">
+            <i class="fa-solid fa-heart-pulse"></i>
+            AI Diabetes Prediction
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <ul class="navbar-nav ms-auto align-items-center">
+
+    <li class="nav-item">
+        <a class="nav-link" href="#home">Home</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#prediction">Prediction</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#about">About</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#contact">Contact</a>
+    </li>
+
+    <li class="nav-item ms-3">
+        <span
+    class="text-white fw-bold"
+    id="welcomeUser"
+    data-username="{{ username }}">
+
+    👋 Welcome {{ username }}
+
+</span>
+    </li>
+
+    <li class="nav-item ms-3">
+        <a href="/logout" class="btn btn-danger btn-sm">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+    </li>
+
+</ul>
+        </div>
+
+    </div>
+</nav>
+
+<section class="hero" id="home">
+
+<div class="overlay"></div>
+
+<div class="container">
+
+<div class="row justify-content-center">
+
+<div class="col-lg-10">
+
+<div class="glass-card" id="prediction">
+
+<div class="text-center">
+
+<i class="fa-solid fa-heart-circle-check display-2 text-white mb-3"></i>
+
+<h1>AI Diabetes Prediction</h1>
+
+<p>
+Predict Diabetes using Artificial Intelligence
+</p>
+
+</div>
+
+<form action="/predict" method="POST">
+
+<div class="row">
+
+<div class="col-md-6 mb-4">
+
+<label>
+<i class="fa-solid fa-person-pregnant"></i>
+Pregnancies
+</label>
+
+<input
+type="number"
+class="form-control"
+name="Pregnancies"
+required>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<label>
+<i class="fa-solid fa-droplet"></i>
+Glucose
+</label>
+
+<input
+type="number"
+class="form-control"
+name="Glucose"
+required>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<label>
+<i class="fa-solid fa-heart-pulse"></i>
+Blood Pressure
+</label>
+
+<input
+type="number"
+class="form-control"
+name="BloodPressure"
+required>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<label>
+<i class="fa-solid fa-ruler"></i>
+Skin Thickness
+</label>
+
+<input
+type="number"
+class="form-control"
+name="SkinThickness"
+required>
+
+</div>
+<div class="col-md-6 mb-4">
+
+<label>
+<i class="fa-solid fa-syringe"></i>
+Insulin
+</label>
+
+<input
+type="number"
+class="form-control"
+name="Insulin"
+required>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<label>
+<i class="fa-solid fa-weight-scale"></i>
+BMI
+</label>
+
+<input
+type="number"
+step="0.1"
+class="form-control"
+name="BMI"
+required>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<label>
+<i class="fa-solid fa-dna"></i>
+Diabetes Pedigree Function
+</label>
+
+<input
+type="number"
+step="0.001"
+class="form-control"
+name="DPF"
+required>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<label>
+<i class="fa-solid fa-user"></i>
+Age
+</label>
+
+<input
+type="number"
+class="form-control"
+name="Age"
+required>
+
+</div>
+
+</div>
+
+<div class="d-flex gap-3 mt-3">
+
+    <button type="submit" class="predict-btn flex-fill" id="predictBtn">
+
+        <span id="btnText">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Predict Diabetes
+        </span>
+
+        <span id="loading" style="display:none;">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            Predicting...
+        </span>
+
+    </button>
+
+    <button type="button"
+            class="reset-btn"
+            onclick="window.location='/'">
+
+        <i class="fa-solid fa-rotate-left"></i>
+        Reset
+
+    </button>
+
+</div>
+
+</form>
+{% if prediction %}
+
+<div class="result-card mt-4">
+
+    {% if "Detected" in prediction %}
+
+    <h2 style="color:#ef4444;">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ prediction }}
+    </h2>
+
+    <div class="progress mt-3">
+        <div
+            class="progress-bar bg-danger"
+            role="progressbar"
+            aria-valuenow="{{ confidence }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style="width: {{ confidence }}%;">
+            {{ confidence }}%
+        </div>
+    </div>
+
+    {% else %}
+
+    <h2 style="color:#22c55e;">
+        <i class="fa-solid fa-circle-check"></i>
+        {{ prediction }}
+    </h2>
+
+    <div class="progress mt-3">
+        <div
+            class="progress-bar bg-success"
+            role="progressbar"
+            aria-valuenow="{{ confidence }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style="width: {{ confidence }}%;">
+            {{ confidence }}%
+        </div>
+    </div>
+
+    {% endif %}
+
+    <p class="mt-3">
+        Confidence :
+        <strong>{{ confidence }}%</strong>
+    </p>
+    <a href="/download_report?prediction={{ prediction }}&confidence={{ confidence }}"
+   class="btn btn-primary mt-3">
+    <i class="fa-solid fa-download"></i>
+    Download PDF Report
+</a>
+
+</div>
+<div class="mt-3 text-center">
+
+    <button class="btn btn-success" onclick="speakPrediction()">
+
+        <i class="fa-solid fa-volume-high"></i>
+
+        Read Prediction
+
+    </button>
+
+</div>
+
+{% endif %}
+<!-- Prediction History -->
+<section class="mt-5">
+
+    <div class="glass-card p-4">
+
+        <h3 class="text-white mb-4">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Prediction History
+        </h3>
+
+        <table class="table table-dark table-hover">
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Prediction</th>
+                    <th>Confidence</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% if prediction %}
+                <tr>
+                    <td>1</td>
+                    <td>{{ prediction }}</td>
+                    <td>{{ confidence }}%</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">
+                        No Prediction Yet
+                    </td>
+                </tr>
+                {% endif %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>  
+
+</div>
+</div>
+</div>
+</div>
+<!-- About Section -->
+<section id="about" class="py-5">
+
+    <div class="container">
+
+        <h2 class="text-center text-white mb-5">
+            <i class="fa-solid fa-circle-info"></i>
+            About Diabetes
+        </h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+                <div class="glass-card p-4 h-100">
+
+                    <h4 class="text-info">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        What is Diabetes?
+                    </h4>
+
+                    <p>
+                        Diabetes is a chronic disease where the body cannot properly control blood sugar levels because of insufficient insulin production or ineffective insulin usage.
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="glass-card p-4 h-100">
+
+                    <h4 class="text-warning">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        Common Symptoms
+                    </h4>
+
+                    <ul>
+                        <li>Frequent urination</li>
+                        <li>Increased thirst</li>
+                        <li>Fatigue</li>
+                        <li>Blurred vision</li>
+                        <li>Slow wound healing</li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="glass-card p-4 h-100">
+
+                    <h4 class="text-danger">
+                        <i class="fa-solid fa-user-shield"></i>
+                        Risk Factors
+                    </h4>
+
+                    <ul>
+                        <li>Obesity</li>
+                        <li>Family history</li>
+                        <li>High blood pressure</li>
+                        <li>Physical inactivity</li>
+                        <li>Age above 45</li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="glass-card p-4 h-100">
+
+                    <h4 class="text-success">
+                        <i class="fa-solid fa-leaf"></i>
+                        Prevention Tips
+                    </h4>
+
+                    <ul>
+                        <li>Exercise regularly</li>
+                        <li>Eat healthy food</li>
+                        <li>Maintain healthy weight</li>
+                        <li>Avoid smoking</li>
+                        <li>Regular health checkups</li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</section>
+<section id="contact" class="py-5">
+
+<div class="container text-center">
+
+<h2 class="text-white mb-4">
+<i class="fa-solid fa-envelope"></i>
+Contact
+</h2>
+
+<p class="text-white">
+📧 mohamedbahir6@gmail.com
+</p>
+
+<p class="text-white">
+📱 +91 6385915962
+</p>
+
+<p class="text-white">
+📍 Tamil Nadu, India
+</p>
+
+</div>
+
+</section>
+
+<footer class="text-center text-white py-4">
+
+    © 2026 AI Diabetes Prediction System <br>
+
+    Developed by ❤️ Mohamed Bahir
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+const form = document.querySelector("form");
+const btnText = document.getElementById("btnText");
+const loading = document.getElementById("loading");
+
+form.addEventListener("submit", function(){
+
+    btnText.style.display="none";
+    loading.style.display="inline";
+
+});
+
+</script>
+{% if prediction %}
+<script>
+window.onload = function () {
+    const result = document.querySelector(".result-card");
+    if (result) {
+        result.scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+};
+</script>
+{% endif %}
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<!-- Chatbot -->
+<div id="chatbot">
+
+    <div id="chat-icon">
+        💬
+    </div>
+
+    <div id="chat-box">
+
+        <div id="chat-header">
+            🤖 AI Diabetes Assistant
+        </div>
+
+        <div id="chat-messages">
+            <div class="bot-message">
+                Hello 👋<br>
+                Ask me anything about diabetes.
+            </div>
+        </div>
+
+        <div class="chat-input">
+
+            <input
+                type="text"
+                id="userInput"
+                placeholder="Type your question...">
+
+            <button id="sendBtn">
+                Send
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+
+const chatIcon = document.getElementById("chat-icon");
+const chatBox = document.getElementById("chat-box");
+
+chatIcon.onclick = function () {
+
+    if (chatBox.style.display === "block") {
+        chatBox.style.display = "none";
+    } else {
+        chatBox.style.display = "block";
+    }
+
+};
+
+</script>
+</body>
+</html>

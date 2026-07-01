@@ -1,0 +1,595 @@
+/* ===========================
+   AI Diabetes Prediction
+   Premium UI
+=========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(rgba(8,20,45,.72),rgba(8,20,45,.72)),
+url("../images/bg.jpg");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+min-height:100vh;
+
+}
+
+/* Hero */
+
+.hero{
+
+padding:80px 0;
+
+}
+
+/* Overlay */
+
+.overlay{
+
+position:fixed;
+
+inset:0;
+
+background:rgba(0,0,0,.20);
+
+z-index:-1;
+
+}
+
+/* Glass Card */
+
+.glass-card{
+
+background:rgba(255,255,255,.10);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.15);
+
+border-radius:30px;
+
+padding:55px;
+
+box-shadow:0 25px 60px rgba(0,0,0,.35);
+
+}
+
+/* Heading */
+
+.glass-card h1{
+
+font-size:55px;
+
+font-weight:800;
+
+color:white;
+
+margin-bottom:10px;
+
+}
+
+.glass-card p{
+
+font-size:22px;
+
+color:#dbeafe;
+
+margin-bottom:40px;
+
+}
+
+/* Label */
+
+label{
+
+display:block;
+
+font-size:18px;
+
+font-weight:600;
+
+color:white;
+
+margin-bottom:10px;
+
+}
+/* ===========================
+   Form Inputs
+=========================== */
+
+.form-control{
+
+height:60px;
+
+border-radius:15px;
+
+border:none;
+
+background:rgba(255,255,255,.95);
+
+padding-left:18px;
+
+font-size:17px;
+
+transition:.35s;
+
+}
+
+.form-control:hover{
+
+transform:translateY(-2px);
+
+}
+
+.form-control:focus{
+
+background:white;
+
+box-shadow:0 0 20px rgba(59,130,246,.55);
+
+transform:translateY(-2px);
+
+}
+
+/* ===========================
+   Predict Button
+=========================== */
+
+.predict-btn{
+
+width:100%;
+
+height:60px;
+
+margin-top:25px;
+
+border:none;
+
+border-radius:16px;
+
+font-size:20px;
+
+font-weight:700;
+
+color:white;
+
+background:linear-gradient(90deg,#2563eb,#06b6d4);
+
+transition:.35s;
+
+cursor:pointer;
+
+}
+
+.predict-btn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 15px 30px rgba(37,99,235,.45);
+
+}
+
+/* Icons */
+
+label i{
+
+margin-right:8px;
+
+color:#7dd3fc;
+
+}
+/* ===========================
+   Result Card
+=========================== */
+
+.result-card{
+
+margin-top:35px;
+
+background:rgba(255,255,255,.95);
+
+border-radius:20px;
+
+padding:25px;
+
+text-align:center;
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+animation:fadeIn .6s ease;
+
+}
+
+.result-card h2{
+
+font-size:32px;
+
+font-weight:700;
+
+margin-bottom:10px;
+
+}
+
+.result-card p{
+
+font-size:18px;
+
+color:#555;
+
+margin:0;
+
+}
+
+/* ===========================
+   Footer
+=========================== */
+
+footer{
+
+margin-top:40px;
+
+padding:20px;
+
+text-align:center;
+
+color:white;
+
+font-size:16px;
+
+}
+
+/* ===========================
+   Animation
+=========================== */
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ===========================
+   Mobile Responsive
+=========================== */
+
+@media(max-width:768px){
+
+.glass-card{
+
+padding:25px;
+
+}
+
+.glass-card h1{
+
+font-size:34px;
+
+}
+
+.glass-card p{
+
+font-size:16px;
+
+}
+
+.predict-btn{
+
+font-size:18px;
+
+}
+
+}
+.progress{
+
+height:22px;
+
+border-radius:20px;
+
+overflow:hidden;
+
+background:#dbeafe;
+
+}
+
+.progress-bar{
+
+font-weight:600;
+
+font-size:14px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+.progress-bar{
+    transition: width 1s ease-in-out;
+}
+.result-card{
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+/* Navigation Bar */
+
+.custom-navbar{
+    background: rgba(10,25,47,.85);
+    backdrop-filter: blur(15px);
+    padding:15px 0;
+    transition:.3s;
+}
+
+.custom-navbar .navbar-brand{
+    font-size:24px;
+    color:white;
+}
+
+.custom-navbar .nav-link{
+    color:white;
+    margin-left:20px;
+    font-weight:500;
+    transition:.3s;
+}
+
+.custom-navbar .nav-link:hover{
+    color:#4facfe;
+}
+
+body{
+    padding-top:80px;
+}
+.navbar-nav{
+    align-items:center;
+}
+
+.navbar-nav .nav-item{
+    margin-left:15px;
+}
+
+.navbar-toggler{
+    border:1px solid rgba(255,255,255,.3);
+}
+
+.navbar-toggler:focus{
+    box-shadow:none;
+}
+html{
+    scroll-behavior: smooth;
+}
+table{
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.table-dark{
+    background:rgba(255,255,255,.08);
+}
+
+.table-hover tbody tr:hover{
+    background:rgba(255,255,255,.12);
+}
+html {
+    scroll-behavior: smooth;
+}
+
+section {
+    scroll-margin-top: 90px;
+}
+.hidden {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s ease;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.custom-navbar{
+    transition: all 0.4s ease;
+}
+
+.custom-navbar.scrolled{
+    background: rgba(10, 25, 47, 0.95);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 5px 20px rgba(0,0,0,.35);
+}
+.reset-btn{
+    width:100px;
+    height:60px;
+    margin-top:25px;
+    border:none;
+    border-radius:16px;
+    background:#ef4444;
+    color:white;
+    font-size:20px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.reset-btn:hover{
+    background:#dc2626;
+    transform:translateY(-3px);
+}
+.reset-btn{
+    height:68px;
+    min-width:170px;
+}
+/* Chatbot */
+
+#chat-icon{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    width:65px;
+    height:65px;
+    background:#0d6efd;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
+    z-index:9999;
+}
+
+#chat-box{
+    position:fixed;
+    bottom:100px;
+    right:25px;
+    width:330px;
+    height:430px;
+    background:white;
+    border-radius:20px;
+    display:none;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,.3);
+    z-index:9999;
+}
+
+#chat-header{
+    background:#0d6efd;
+    color:white;
+    padding:15px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+#chat-messages{
+    height:300px;
+    overflow-y:auto;
+    padding:15px;
+}
+
+.bot-message{
+    background:#f1f1f1;
+    padding:10px;
+    border-radius:12px;
+    margin-bottom:10px;
+}
+
+.chat-input{
+    display:flex;
+    border-top:1px solid #ddd;
+}
+
+.chat-input input{
+    flex:1;
+    border:none;
+    padding:12px;
+    outline:none;
+}
+
+.chat-input button{
+    border:none;
+    background:#0d6efd;
+    color:white;
+    padding:12px 18px;
+}
+/* ==========================
+   Loading Screen
+========================== */
+
+#loader{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#0f172a;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+}
+
+.loader-content{
+    text-align:center;
+    color:white;
+}
+
+.loader-icon{
+    font-size:70px;
+    color:#3b82f6;
+    animation:heartbeat 1s infinite;
+}
+
+.loader-content h2{
+    margin-top:20px;
+    font-size:32px;
+    font-weight:bold;
+}
+
+.loader-content p{
+    margin-top:20px;
+    letter-spacing:3px;
+}
+
+.loader-bar{
+    width:260px;
+    height:8px;
+    background:#334155;
+    border-radius:20px;
+    margin:20px auto;
+    overflow:hidden;
+}
+
+.loader-progress{
+    width:0%;
+    height:100%;
+    background:#3b82f6;
+    animation:loading 2s linear forwards;
+}
+
+@keyframes loading{
+
+    from{
+        width:0%;
+    }
+
+    to{
+        width:100%;
+    }
+
+}
+
+@keyframes heartbeat{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.15);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
